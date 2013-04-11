@@ -16,7 +16,7 @@ Clone this repository into
 
 If you do not use oh-my-zhell you need to make sure to source *gript.plugin.zsh* in your startup ZSH script.
 
-Aliase Configuration
+Alias Configuration
 ----
 
 Once installed, you can modify *gript-aliases.groovy* to add/remove aliases. This file is a Groovy file with an *arguments*
@@ -34,7 +34,7 @@ grts_sub="gradle -Dsingle.test=${arguments[0]} :${arguments[1]}:test"
 Notice, this is a regular Groovy file, we could use more complicated Groovy code if necessary.
 
 Execution
-___________
+----
 
 Once an alias is configured, it can be executed via the given alias on the command-line:
 
