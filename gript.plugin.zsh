@@ -4,7 +4,11 @@ function "#"() {
 
     if [[ -f "${ZSH}/plugins/gript/gript_script.groovy" ]]; then
     	groovy "${ZSH}/plugins/gript/gript_script.groovy" "${function} ${args}"
+    elif [[ -f "~/.zsh/gript/gript_script.groovy" ]]; then
+        groovy "~/.zsh/gript/gript_script.groovy" "${function} ${args}"
+    elif [[ -f "~/gript/gript_script.groovy" ]]; then
+        groovy "~/gript/gript_script.groovy" "${function} ${args}"
     else
-        groovy "${ZSH}/gript/gript_script.groovy" "${function} ${args}"	
+        echo "Could not find the gript installation directory, please modify gript.plugin.zsh"	
     fi
 }
