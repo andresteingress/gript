@@ -1,7 +1,8 @@
 gript
 =====
 
-ZSH Wrapper for Executing Groovy Functions and Aliases
+A ZSH Wrapper for Groovy files providing aliases and functions to be used at the command-line. Attempts to make 
+working with ZSH groovier.
 
 CURRENTLY UNDER HEAVY DEVELOPMENT!
 
