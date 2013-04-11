@@ -6,7 +6,7 @@ ZSH Wrapper for Executing Groovy Functions and Aliases
 CURRENTLY UNDER HEAVY DEVELOPMENT!
 
 Installation
-____________
+----
 
 Clone this repository into
 
@@ -17,7 +17,7 @@ Clone this repository into
 If you do not use oh-my-zhell you need to make sure to source *gript.plugin.zsh* in your startup ZSH script.
 
 Aliase Configuration
-____________________
+----
 
 Once installed, you can modify *gript-aliases.groovy* to add/remove aliases. This file is a Groovy file with an *arguments*
 variable to be used for accessing the commands arguments (starting at 0 for the first argument).
