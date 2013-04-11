@@ -33,6 +33,11 @@ grts_sub="gradle -Dsingle.test=${arguments[0]} :${arguments[1]}:test"
 
 Notice, this is a regular Groovy file, we could use more complicated Groovy code if necessary.
 
+Function Configuration
+----
+
+You can modify *gript-functions.groovy* to add/remove functions available on the command-line.
+
 Execution
 ----
 
