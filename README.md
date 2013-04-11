@@ -44,3 +44,9 @@ Once an alias is configured, it can be executed via the given alias on the comma
 ...
 ```
 
+```
+➜  ~  # grt_sub library-core
+########## running command: gradle :library-core:test
+...
+```
+
