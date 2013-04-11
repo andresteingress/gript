@@ -45,9 +45,6 @@ if (a && a instanceof CharSequence) {
 * ### FUNCTIONS
 */
 def functionsBinding = evaluate(new File(home, 'gript-functions.groovy'))
-
-println functionsBinding.variables
-
 def function = functionsBinding.variables[commandName]
 if (function && function instanceof Closure) {
 	function.call(args)
