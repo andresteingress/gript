@@ -39,6 +39,26 @@ Function Configuration
 
 You can modify *gript-functions.groovy* to add/remove functions available on the command-line.
 
+```groovy
+unzipGroovy = { args ->
+    def proc = "autojump groovy-core".execute()
+    proc.waitFor()
+
+    def groovyDirectory = new File(proc.text)
+    println "Groovy installation directory: $groovyDirectory"
+
+    def dist = new File("${groovyDirectory.absolutePath}/target/distributions/")
+    println "Dist directory: $dist"
+
+    def zip  = new File(dist, "groovy-binary-2.2.0-SNAPSHOT.zip")
+    if (!zip) return
+
+    zip.unzip(dist)
+}
+```
+
+Please note, the example above shows Gript coming with <a href="http://github.com/timyates/groovy-common-extensions">Groovy common extensions</a> enabled by default.
+
 Execution
 ----
 
@@ -59,8 +79,8 @@ Once an alias is configured, it can be executed via the given alias on the comma
 If functions are configured, you can call them by funcion name (including optional arguments) on the command-line:
 
 ```
-➜  ~  loadAndUnzipGroovyDist
-########## running command: loadAndUnzipGroovyDist
+➜  ~  unzipGroovy
+########## running command: unzipGroovy
 ...
 ```
 
