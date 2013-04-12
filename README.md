@@ -45,14 +45,22 @@ Execution
 Once an alias is configured, it can be executed via the given alias on the command-line:
 
 ```
-➜  ~  # gri
+➜  ~  gri
 ########## running command: gradle install
 ...
 ```
 
 ```
-➜  ~  # grt_sub library-core
+➜  ~  grt_sub library-core
 ########## running command: gradle :library-core:test
+...
+```
+
+If functions are configured, you can call them by funcion name (including optional arguments) on the command-line:
+
+```
+➜  ~  loadAndUnzipGroovyDist
+########## running command: loadAndUnzipGroovyDist
 ...
 ```
 
