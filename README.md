@@ -1,10 +1,10 @@
 gript
 =====
 
-A ZSH Wrapper for Groovy files providing aliases and functions to be used at the command-line. Attempts to make 
-working with ZSH groovier.
+A ZSH Wrapper for adding custom aliases and functions written in the Groovy programming language. The aliases and functions can be
+directly called via the command-line.
 
-CURRENTLY UNDER HEAVY DEVELOPMENT!
+**CURRENTLY UNDER HEAVY DEVELOPMENT!**
 
 Installation
 ----
