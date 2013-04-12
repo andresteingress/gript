@@ -1,12 +1,12 @@
 unzipGroovy = { args ->
     def autoJumpDir = cmdRetString('autojump groovy-core').trim() ?: WORKING_DIRECTORY
-    def groovyDirectory = new File(autoJumpDir as String)
+    def groovyDirectory = file(autoJumpDir as String)
     println "Groovy installation directory: $groovyDirectory"
 
-    def dist = new File("${groovyDirectory.absolutePath}/target/distributions/")
+    def dist = file("${groovyDirectory.absolutePath}/target/distributions/")
     println "Dist directory: $dist"
 
-    def zip  = new File(dist, "groovy-binary-2.2.0-SNAPSHOT.zip")
+    def zip  = parentFile(dist, "groovy-binary-2.2.0-SNAPSHOT.zip")
     if (!zip) return
 
     println "Unzipping: $zip ..."

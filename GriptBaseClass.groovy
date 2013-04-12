@@ -55,6 +55,14 @@ abstract class GriptBaseClass extends Script {
 		new File(getClass().protectionDomain.codeSource.location.path).parentFile
 	}
 
+	Closure<File> file = { String fileName ->
+		new File(fileName)
+	}
+
+	Closure<File> parentFile = { File parent, String fileName ->
+		new File(parent, fileName)
+	}
+
 	Closure<File> griptHome = { String fileName ->
 		new File(GRIPT_HOME, fileName)
 	}
@@ -82,6 +90,8 @@ abstract class GriptBaseClass extends Script {
 		isolatedBinding.setVariable('GRIPT_HOME', GRIPT_HOME)
 		isolatedBinding.setVariable('WORKING_DIRECTORY', WORKING_DIRECTORY)
 
+        isolatedBinding.setVariable('file', file)
+        isolatedBinding.setVariable('parentFile', parentFile)
 		isolatedBinding.setVariable('griptHome', griptHome)
 		isolatedBinding.setVariable('workingDirectory', workingDirectory)
 
