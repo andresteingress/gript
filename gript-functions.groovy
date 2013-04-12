@@ -2,7 +2,7 @@ unzipGroovy = { args ->
     def proc = "autojump groovy-core".execute()
     proc.waitFor()
 
-    def groovyDirectory = new File(proc.text)
+    def groovyDirectory = new File(proc.text.trim())
     println "Groovy installation directory: $groovyDirectory"
 
     def dist = new File("${groovyDirectory.absolutePath}/target/distributions/")
@@ -11,5 +11,6 @@ unzipGroovy = { args ->
     def zip  = new File(dist, "groovy-binary-2.2.0-SNAPSHOT.zip")
     if (!zip) return
 
+    println "Unzipping: $zip isFile: ${zip.exists()}"
     zip.unzip(dist)
 }

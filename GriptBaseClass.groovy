@@ -22,9 +22,9 @@
 *
 * @author Andre Steingress
 */
-import static groovy.transform.TypeCheckingMode.*
+import groovy.transform.CompileStatic
 
-@groovy.transform.CompileStatic
+@CompileStatic
 abstract class GriptBaseClass extends Script {
 
     File GRIPT_HOME
