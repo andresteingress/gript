@@ -57,6 +57,8 @@ unzipGroovy = { args ->
 }
 ```
 
+Please note, the example above shows Gript coming with <a href="http://github.com/timyates/groovy-common-extensions">Groovy common extensions</a> enabled by default.
+
 Execution
 ----
 
