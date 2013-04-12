@@ -1,30 +1,11 @@
-arguments = args[0].split(' ').collect { it.trim() }
-if (arguments.size() == 0) return
-
-def commandName = arguments[0]
-arguments = arguments.size() > 1 ? arguments[1..<arguments.size()] : []
-
-def home = new File(getClass().protectionDomain.codeSource.location.path).parent
-
 /**
-* ### COMMON
+* ######### MAIN GRIPT INITIALIZATION SCRIPT ######### 
+*
+* @author Andre Steingress
 */
-def evaluate = { File file, boolean withArgs = false ->
-	def isolatedBinding = new Binding([:])
-	if (!file) return isolatedBinding
-    
-    if (withArgs) isolatedBinding.setVariable('arguments', arguments)
+initGriptScript()
 
-	GroovyShell shell = new GroovyShell(getClass().classLoader, isolatedBinding)
-    shell.evaluate(file)
-
-    return isolatedBinding
-}
-
-/**
-* ### ALIASES
-*/
-def aliasBinding = evaluate(new File(home, 'gript-aliases.groovy'), true)
+def aliasBinding = evaluate(new File(GRIPT_HOME, 'gript-aliases.groovy'), true)
 def executeAlias  = { command, args ->
     println "########## running command: $command"
 
@@ -41,10 +22,7 @@ if (a && a instanceof CharSequence) {
 	return    
 } 
 
-/**
-* ### FUNCTIONS
-*/
-def functionsBinding = evaluate(new File(home, 'gript-functions.groovy'))
+def functionsBinding = evaluate(new File(GRIPT_HOME, 'gript-functions.groovy'))
 def function = functionsBinding.variables[commandName]
 if (function && function instanceof Closure) {
 	function.call(args)

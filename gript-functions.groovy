@@ -1,7 +1,3 @@
-@Grapes( 
-  @Grab(group='com.bloidonia', module='groovy-common-extensions', version='0.4.1') 
-)
-
 unzipGroovy = { args ->
     def proc = "autojump groovy-core".execute()
     proc.waitFor()
@@ -17,5 +13,3 @@ unzipGroovy = { args ->
 
     File.unzip(dist)
 }
-
-binding.setVariable('unzipGroovy', unzipGroovy)
