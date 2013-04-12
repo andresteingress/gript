@@ -46,7 +46,7 @@ abstract class GriptBaseClass extends Script {
 		GRIPT_HOME = getHomeDirectory()	
 	}
 
-	static File getHomeDirectory () {
+	File getHomeDirectory () {
 		new File(getClass().protectionDomain.codeSource.location.path).parentFile
 	}
 
