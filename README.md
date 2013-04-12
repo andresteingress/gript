@@ -35,7 +35,7 @@ Both Gript scripts are executed with the following pre-defined variables and fun
 Alias Configuration
 ----
 
-Once installed, you can modify *gript-aliases.groovy* to add/remove aliases. This file is a Groovy file with an *arguments*
+Once installed, you can modify *gript-aliases.groovy* to add/remove aliases. This file is a Groovy file with an additional *arguments*
 variable to be used for accessing the command arguments (starting at 0 for the first argument).
 
 ```groovy
