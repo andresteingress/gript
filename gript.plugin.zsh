@@ -3,6 +3,7 @@ function command_not_found_handler() {
     local args=$*[2,-1]
     local bootstrapScript="gript_bootstrap.groovy"
 
+    #probing for gript location
     if [[ -f "${ZSH}/plugins/gript/${bootstrapScript}" ]]; then
     	groovy "${ZSH}/plugins/gript/${bootstrapScript}" "${function} ${args}"
     elif [[ -f "~/.zsh/gript/${bootstrapScript}" ]]; then
