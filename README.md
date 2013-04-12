@@ -21,7 +21,14 @@ Alias Configuration
 ----
 
 Once installed, you can modify *gript-aliases.groovy* to add/remove aliases. This file is a Groovy file with an *arguments*
-variable to be used for accessing the commands arguments (starting at 0 for the first argument).
+variable to be used for accessing the command arguments (starting at 0 for the first argument).
+
+Gript scripts are executed with the following pre-defined variables and functions:
+
+* *GRIPT_HOME* refers to the Gript installation directory
+* *WORKING_DIRECTORY* refers to the current working directory from which the alias or function was called
+* *griptHome(String fileName)* used to lookup files in the installation directory
+* *workingDirecory(String fileName)* used to lookup files in the working directory
 
 ```groovy
 gri="gradle install"
