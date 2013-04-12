@@ -24,7 +24,7 @@
 */
 initGriptScript()
 
-def aliasBinding = evaluate(new File(GRIPT_HOME, 'gript-aliases.groovy'), true)
+def aliasBinding = evaluate(griptHome('gript-aliases.groovy'), true)
 def executeAlias  = { command, args ->
     println "########## running command: $command"
 
@@ -41,7 +41,7 @@ if (a && a instanceof CharSequence) {
 	return    
 } 
 
-def functionsBinding = evaluate(new File(GRIPT_HOME, 'gript-functions.groovy'))
+def functionsBinding = evaluate(griptHome('gript-functions.groovy'))
 def function = functionsBinding.variables[commandName]
 if (function && function instanceof Closure) {
 	function.call(args)
