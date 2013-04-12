@@ -45,12 +45,12 @@ directly called via the command-line.</p>
 <li>~/</li>
 </ul><p>If you do not use oh-my-zhell you need to make sure to source <em>gript.plugin.zsh</em> in your startup ZSH script.</p>
 
-<h2>Alias Configuration</h2>
+<h2>Gript Scripts</h2>
 
-<p>Once installed, you can modify <em>gript-aliases.groovy</em> to add/remove aliases. This file is a Groovy file with an <em>arguments</em>
-variable to be used for accessing the command arguments (starting at 0 for the first argument).</p>
+<p>Currently, Gript comes with two predefines places to put aliases and functions: <em>gript-aliases.groovy</em> and <em>gript-functions.groovy</em>.
+Both files are scripts files written in the Groovy programming language.</p>
 
-<p>Gript scripts are executed with the following pre-defined variables and functions:</p>
+<p>Both Gript scripts are executed with the following pre-defined variables and functions:</p>
 
 <ul>
 <li>
@@ -61,7 +61,15 @@ variable to be used for accessing the command arguments (starting at 0 for the f
 <em>griptHome(String fileName)</em> used to lookup files in the installation directory</li>
 <li>
 <em>workingDirecory(String fileName)</em> used to lookup files in the working directory</li>
-</ul><div class="highlight"><pre><span class="n">gri</span><span class="o">=</span><span class="s2">"gradle install"</span>
+<li>and the complete set of GDK/JDK methods</li>
+<li>and additional extension methods from <a href="http://github.com/timyates/groovy-common-extensions">Groovy common extensions</a>
+</li>
+</ul><h2>Alias Configuration</h2>
+
+<p>Once installed, you can modify <em>gript-aliases.groovy</em> to add/remove aliases. This file is a Groovy file with an <em>arguments</em>
+variable to be used for accessing the command arguments (starting at 0 for the first argument).</p>
+
+<div class="highlight"><pre><span class="n">gri</span><span class="o">=</span><span class="s2">"gradle install"</span>
 <span class="n">grci</span><span class="o">=</span><span class="s2">"gradle clean install"</span>
 <span class="n">grt</span><span class="o">=</span><span class="s2">"gradle test"</span>
 <span class="n">grt_sub</span><span class="o">=</span><span class="s2">"gradle :${arguments[0]}:test"</span>
