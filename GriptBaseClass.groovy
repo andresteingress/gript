@@ -43,7 +43,11 @@ abstract class GriptBaseClass extends Script {
 	}
 
 	void initGriptHome() {
-		GRIPT_HOME = new File(getClass().protectionDomain.codeSource.location.path).parentFile
+		GRIPT_HOME = getHomeDirectory()	
+	}
+
+	static File getHomeDirectory () {
+		new File(getClass().protectionDomain.codeSource.location.path).parentFile
 	}
 
 	Binding evaluate(File griptFile, boolean withArgs = false)  {

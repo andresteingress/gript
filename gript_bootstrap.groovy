@@ -29,7 +29,7 @@ def config = new CompilerConfiguration()
 config.scriptBaseClass = 'GriptBaseClass'
 
 def shell  = new GroovyShell(this.binding, config)
-def mainScript = new File('gript_script.groovy')
+def mainScript = new File(new File(getClass().protectionDomain.codeSource.location.path).parentFile, 'gript_script.groovy')
 if (!mainScript) throw new Exception('gript_script.groovy not found!')
 
 shell.evaluate(mainScript)

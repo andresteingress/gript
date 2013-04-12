@@ -11,6 +11,10 @@ unzipGroovy = { args ->
     def zip  = new File(dist, "groovy-binary-2.2.0-SNAPSHOT.zip")
     if (!zip) return
 
-    println "Unzipping: $zip isFile: ${zip.exists()}"
+    println "Unzipping: $zip ..."
+    println "Target directory: $dist"
     zip.unzip(dist)
+
+    proc = "cd $dist".execute()
+    proc.waitFor()
 }
