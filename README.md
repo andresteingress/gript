@@ -17,18 +17,26 @@ Clone this repository into
 
 If you do not use oh-my-zhell you need to make sure to source *gript.plugin.zsh* in your startup ZSH script.
 
-Alias Configuration
+Gript Scripts
 ----
 
-Once installed, you can modify *gript-aliases.groovy* to add/remove aliases. This file is a Groovy file with an *arguments*
-variable to be used for accessing the command arguments (starting at 0 for the first argument).
+Currently, Gript comes with two predefines places to put aliases and functions: *gript-aliases.groovy* and *gript-functions.groovy*.
+Both files are scripts files written in the Groovy programming language.
 
-Gript scripts are executed with the following pre-defined variables and functions:
+Both Gript scripts are executed with the following pre-defined variables and functions:
 
 * *GRIPT_HOME* refers to the Gript installation directory
 * *WORKING_DIRECTORY* refers to the current working directory from which the alias or function was called
 * *griptHome(String fileName)* used to lookup files in the installation directory
 * *workingDirecory(String fileName)* used to lookup files in the working directory
+* and the complete set of GDK/JDK methods
+* and additional extension methods from <a href="http://github.com/timyates/groovy-common-extensions">Groovy common extensions</a>
+
+Alias Configuration
+----
+
+Once installed, you can modify *gript-aliases.groovy* to add/remove aliases. This file is a Groovy file with an *arguments*
+variable to be used for accessing the command arguments (starting at 0 for the first argument).
 
 ```groovy
 gri="gradle install"
