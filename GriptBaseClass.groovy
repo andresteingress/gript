@@ -28,6 +28,7 @@ import groovy.transform.CompileStatic
 abstract class GriptBaseClass extends Script {
 
     File GRIPT_HOME
+    File WORKING_DIRECTORY
 
     String commandName
 	List arguments = []
@@ -46,6 +47,10 @@ abstract class GriptBaseClass extends Script {
 		GRIPT_HOME = getHomeDirectory()	
 	}
 
+	void initWorkingDirectory() {
+		WORKING_DIRECTORY = new File(System.properties['wd'] as String)
+	}
+
 	File getHomeDirectory () {
 		new File(getClass().protectionDomain.codeSource.location.path).parentFile
 	}
@@ -54,6 +59,9 @@ abstract class GriptBaseClass extends Script {
 		def isolatedBinding = new Binding([:])
 		if (!griptFile) return isolatedBinding
     
+		isolatedBinding.setVariable('GRIPT_HOME', GRIPT_HOME)
+		isolatedBinding.setVariable('WORKING_DIRECTORY', WORKING_DIRECTORY)
+
     	if (withArgs) isolatedBinding.setVariable('arguments', arguments)
 
 		GroovyShell shell = new GroovyShell(getClass().classLoader, isolatedBinding)
@@ -65,5 +73,6 @@ abstract class GriptBaseClass extends Script {
     def initGriptScript() {
 		initArguments()
 		initGriptHome()
+		initWorkingDirectory()
 	}
 }
