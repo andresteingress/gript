@@ -1,9 +1,6 @@
 unzipGroovy = { args ->
-    def proc = "autojump groovy-core".execute()
-    proc.waitFor()
-
-    def autoJumpDir = proc.text.trim() ?: WORKING_DIRECTORY
-    def groovyDirectory = new File(autoJumpDir.absolutePath)
+    def autoJumpDir = cmdRetString('autojump groovy-core').trim() ?: WORKING_DIRECTORY
+    def groovyDirectory = new File(autoJumpDir as String)
     println "Groovy installation directory: $groovyDirectory"
 
     def dist = new File("${groovyDirectory.absolutePath}/target/distributions/")

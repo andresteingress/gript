@@ -28,10 +28,7 @@ def aliasBinding = evaluate(griptHome('gript-aliases.groovy'))
 def executeAlias  = { command, args ->
     println "########## running command: $command"
 
-    def proc = command.execute()
-    proc.consumeProcessOutput(System.out, System.err)
-
-    def returnValue = proc.waitFor()
+    def returnValue = cmdConsume(command)
     println "return value: $returnValue"
 }
 

@@ -63,6 +63,18 @@ abstract class GriptBaseClass extends Script {
 		new File(WORKING_DIRECTORY, fileName)
 	}
 
+	Closure<String> cmdRetString = { String command ->
+		def proc = command.execute()
+		proc.waitFor()
+		return proc.text
+	}
+
+	Closure<Integer> cmdConsume = { String command ->
+		def proc = command.execute()
+		proc.consumeProcessOutput(System.out, System.err)
+		return proc.waitFor()
+	}
+
 	Binding evaluate(File griptFile, boolean withArgs = false)  {
 		def isolatedBinding = new Binding([:])
 		if (!griptFile) return isolatedBinding
@@ -74,6 +86,9 @@ abstract class GriptBaseClass extends Script {
 		isolatedBinding.setVariable('workingDirectory', workingDirectory)
 
     	isolatedBinding.setVariable('arguments', arguments)
+
+    	isolatedBinding.setVariable('cmdRetString', cmdRetString)
+    	isolatedBinding.setVariable('cmdConsume', cmdConsume)
 
 		GroovyShell shell = new GroovyShell(getClass().classLoader, isolatedBinding)
     	shell.evaluate(griptFile)
