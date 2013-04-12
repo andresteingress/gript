@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Gript by andresteingress</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Gript</h1>
+        <h2>ZSH Wrapper for Executing Groovy Functions and Aliases</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/andresteingress/gript/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/andresteingress/gript/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/andresteingress/gript" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>gript</h1>
+
+<p>A ZSH Wrapper for adding custom aliases and functions written in the Groovy programming language. The aliases and functions can be
+directly called via the command-line.</p>
+
+<p><strong>CURRENTLY UNDER HEAVY DEVELOPMENT!</strong></p>
+
+<h2>Installation</h2>
+
+<p>Clone this repository into</p>
+
+<ul>
+<li>.oh-my-zshell/plugins or</li>
+<li>.zsh/ or</li>
+<li>~/</li>
+</ul><p>If you do not use oh-my-zhell you need to make sure to source <em>gript.plugin.zsh</em> in your startup ZSH script.</p>
+
+<h2>Alias Configuration</h2>
+
+<p>Once installed, you can modify <em>gript-aliases.groovy</em> to add/remove aliases. This file is a Groovy file with an <em>arguments</em>
+variable to be used for accessing the commands arguments (starting at 0 for the first argument).</p>
+
+<div class="highlight"><pre><span class="n">gri</span><span class="o">=</span><span class="s2">"gradle install"</span>
+<span class="n">grci</span><span class="o">=</span><span class="s2">"gradle clean install"</span>
+<span class="n">grt</span><span class="o">=</span><span class="s2">"gradle test"</span>
+<span class="n">grt_sub</span><span class="o">=</span><span class="s2">"gradle :${arguments[0]}:test"</span>
+<span class="n">grc</span><span class="o">=</span><span class="s2">"gradle clean"</span>
+<span class="n">grts_sub</span><span class="o">=</span><span class="s2">"gradle -Dsingle.test=${arguments[0]} :${arguments[1]}:test"</span> 
+</pre></div>
+
+<p>Notice, this is a regular Groovy file, we could use more complicated Groovy code if necessary.</p>
+
+<h2>Function Configuration</h2>
+
+<p>You can modify <em>gript-functions.groovy</em> to add/remove functions to be available on the command-line.</p>
+
+<div class="highlight"><pre><span class="n">unzipGroovy</span> <span class="o">=</span> <span class="o">{</span> <span class="n">args</span> <span class="o">-&gt;</span>
+    <span class="kt">def</span> <span class="n">proc</span> <span class="o">=</span> <span class="s2">"autojump groovy-core"</span><span class="o">.</span><span class="na">execute</span><span class="o">()</span>
+    <span class="n">proc</span><span class="o">.</span><span class="na">waitFor</span><span class="o">()</span>
+
+    <span class="kt">def</span> <span class="n">groovyDirectory</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">proc</span><span class="o">.</span><span class="na">text</span><span class="o">)</span>
+    <span class="n">println</span> <span class="s2">"Groovy installation directory: $groovyDirectory"</span>
+
+    <span class="kt">def</span> <span class="n">dist</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s2">"${groovyDirectory.absolutePath}/target/distributions/"</span><span class="o">)</span>
+    <span class="n">println</span> <span class="s2">"Dist directory: $dist"</span>
+
+    <span class="kt">def</span> <span class="n">zip</span>  <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="n">dist</span><span class="o">,</span> <span class="s2">"groovy-binary-2.2.0-SNAPSHOT.zip"</span><span class="o">)</span>
+    <span class="k">if</span> <span class="o">(!</span><span class="n">zip</span><span class="o">)</span> <span class="k">return</span>
+
+    <span class="n">zip</span><span class="o">.</span><span class="na">unzip</span><span class="o">(</span><span class="n">dist</span><span class="o">)</span>
+<span class="o">}</span>
+</pre></div>
+
+<p>Please note, the example above shows Gript coming with <a href="http://github.com/timyates/groovy-common-extensions">Groovy common extensions</a> enabled by default.</p>
+
+<h2>Execution</h2>
+
+<p>Once an alias is configured, it can be executed via the given alias on the command-line:</p>
+
+<pre><code>➜  ~  gri
+########## running command: gradle install
+...
+</code></pre>
+
+<pre><code>➜  ~  grt_sub library-core
+########## running command: gradle :library-core:test
+...
+</code></pre>
+
+<p>If functions are configured, you can call them by funcion name (including optional arguments) on the command-line:</p>
+
+<pre><code>➜  ~  unzipGroovy
+########## running command: unzipGroovy
+...
+</code></pre>
+
+<p>Gript is licensed under a BSD license:</p>
+
+<blockquote>
+<p>Copyright (c) 2013, Andre Steingress</p>
+
+<p>All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that
+the following conditions are met:</p>
+
+<p>Redistributions of source code must retain the above copyright notice, this list of conditions
+and the following disclaimer.
+Redistributions in binary form must reproduce the above copyright notice, this list of conditions
+and the following disclaimer in the documentation and/or other materials provided with the distribution.</p>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.</p>
+</blockquote>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
