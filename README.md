@@ -99,7 +99,7 @@ If functions are configured, you can call them by funcion name (including option
 ...
 ```
 
-Gript is licensed under a BSD license:
+Gript is distributed under a BSD license. If you want to use Gript in any form you have to agree to this license:
 
 > Copyright (c) 2013, Andre Steingress
 > 
