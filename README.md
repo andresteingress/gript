@@ -77,8 +77,8 @@ Once an alias is configured, it can be executed via the given alias on the comma
 If functions are configured, you can call them by funcion name (including optional arguments) on the command-line:
 
 ```
-➜  ~  loadAndUnzipGroovyDist
-########## running command: loadAndUnzipGroovyDist
+➜  ~  unzipGroovy
+########## running command: unzipGroovy
 ...
 ```
 
