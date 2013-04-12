@@ -37,7 +37,7 @@ Notice, this is a regular Groovy file, we could use more complicated Groovy code
 Function Configuration
 ----
 
-You can modify *gript-functions.groovy* to add/remove functions available on the command-line.
+You can modify *gript-functions.groovy* to add/remove functions to be available on the command-line.
 
 ```groovy
 unzipGroovy = { args ->
