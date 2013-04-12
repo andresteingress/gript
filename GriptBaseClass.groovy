@@ -73,7 +73,7 @@ abstract class GriptBaseClass extends Script {
 		isolatedBinding.setVariable('griptHome', griptHome)
 		isolatedBinding.setVariable('workingDirectory', workingDirectory)
 
-    	if (withArgs) isolatedBinding.setVariable('arguments', arguments)
+    	isolatedBinding.setVariable('arguments', arguments)
 
 		GroovyShell shell = new GroovyShell(getClass().classLoader, isolatedBinding)
     	shell.evaluate(griptFile)

@@ -24,7 +24,7 @@
 */
 initGriptScript()
 
-def aliasBinding = evaluate(griptHome('gript-aliases.groovy'), true)
+def aliasBinding = evaluate(griptHome('gript-aliases.groovy'))
 def executeAlias  = { command, args ->
     println "########## running command: $command"
 
