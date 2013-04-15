@@ -18,18 +18,34 @@
  ******************************************************************************/
 
 /**
-* ######### GRIPT BOOTSTRAP ######### 
+* ######### MAIN GRIPT INITIALIZATION SCRIPT ######### 
 *
 * @author Andre Steingress
 */
-@Grab( 'com.bloidonia:groovy-common-extensions:0.4.1')
-import org.codehaus.groovy.control.CompilerConfiguration
+initGriptScript()
 
-def config = new CompilerConfiguration() 
-config.scriptBaseClass = 'GriptBaseClass'
+final String ALIASES = 'gript-aliases.groovy'
+final String FUNCTIONS = 'gript-functions.groovy'
 
-def shell  = new GroovyShell(this.binding, config)
-def mainScript = new File('gript_script.groovy')
-if (!mainScript) throw new Exception('gript_script.groovy not found!')
+def aliasBinding = evaluate(griptHome(ALIASES))
+def executeAlias  = { command, args ->
+    println "########## running command: $command"
 
-shell.evaluate(new File(mainScript.absolutePath))
+    def returnValue = cmdConsume(command)
+    println "return value: $returnValue"
+}
+
+def a = aliasBinding.variables[commandName]
+if (a && a instanceof CharSequence) {
+	executeAlias.call(a, args)
+	return    
+} 
+
+def functionsBinding = evaluate(griptHome(FUNCTIONS))
+def function = functionsBinding.variables[commandName]
+if (function && function instanceof Closure) {
+	function.call(args)
+	return    
+}
+   
+println "Could not find gript command '$commandName'"

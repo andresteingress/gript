@@ -48,7 +48,8 @@ abstract class GriptBaseClass extends Script {
 	}
 
 	void initWorkingDirectory() {
-		WORKING_DIRECTORY = new File(System.properties['wd'] as String)
+        def workingDir = System.properties['wd'] ?: System.properties['user.dir']
+		WORKING_DIRECTORY = new File(workingDir as String)
 	}
 
 	File getHomeDirectory () {
@@ -79,7 +80,7 @@ abstract class GriptBaseClass extends Script {
 
 	Closure<Integer> cmdConsume = { String command ->
 		def proc = command.execute()
-		proc.consumeProcessOutput(System.out, System.err)
+		proc.consumeProcessOutput()
 		return proc.waitFor()
 	}
 
